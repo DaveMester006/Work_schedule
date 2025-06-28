@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vizuális Projekt Menedzsment Eszköz</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Vega-Embed és Vega-Lite könyvtárak a kördiagramhoz -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>PMA Schedule</h1>
+            <div class="felhasznalo-szekcio">
+                <label for="felhasznalo-valaszto">Aktuális felhasználó:</label>
+                <select id="felhasznalo-valaszto">
+                    <option value="Anna">Gábor</option>
+                    <option value="Péter">Attila</option>
+                    <option value="Vendég">Dávid</option>
+                </select>
+            </div>
+        </header>
+
+        <main>
+            <section class="urlap-szekcio">
+                <h2>Új Projekt Hozzáadása</h2>
+                <form id="projekt-urlap">
+                    <div class="urlap-csoport">
+                        <label for="projekt-nev">Projekt neve:</label>
+                        <input type="text" id="projekt-nev" placeholder="Pl. Weboldal redesign" required>
+                    </div>
+                    <div class="urlap-csoport">
+                        <label for="kezdes-datum">Kezdés dátuma:</label>
+                        <input type="date" id="kezdes-datum" required>
+                    </div>
+                    <div class="urlap-csoport">
+                        <label for="hatarido">Határidő:</label>
+                        <input type="date" id="hatarido" required>
+                    </div>
+                    <button type="submit">Projekt Hozzáadása</button>
+                </form>
+            </section>
+
+            <section class="projektek-szekcio">
+                <div class="lista-fejlec">
+                    <h2>Aktuális Projektek</h2>
+                    <div class="szurok">
+                        <input type="text" id="nev-szuro" placeholder="Keresés név alapján...">
+                        <select id="statusz-szuro">
+                            <option value="all">Minden státusz</option>
+                            <option value="tervezett">Tervezett</option>
+                            <option value="folyamatban">Folyamatban</option>
+                            <option value="kesz">Kész</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="projekt-lista"></div>
+            </section>
+
+            <section class="naptar-szekcio">
+                <div class="lista-fejlec">
+                    <h2>Idővonal Nézet</h2>
+                    <button id="mai-napra-ugras">Ugrás a mai napra</button>
+                </div>
+                <div id="idovonal-kontener" class="idovonal-kontener">
+                    <div id="idovonal-grid" class="idovonal-grid">
+                        </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="projekt-reszletek-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <div id="modal-body">
+                <div class="projekt-info-content"></div> 
+                <div class="subprojekt-hozzaadas">
+                    <h4>Alprojekt Hozzáadása</h4>
+                    <form id="alprojekt-urlap">
+                        <input type="hidden" id="szulo-projekt-id">
+                        <div class="urlap-csoport">
+                            <label for="alprojekt-nev">Alprojekt neve:</label>
+                            <input type="text" id="alprojekt-nev" required>
+                        </div>
+                        <div class="urlap-csoport">
+                            <label for="alprojekt-kezdes-datum">Kezdés dátuma:</label>
+                            <input type="date" id="alprojekt-kezdes-datum" required>
+                        </div>
+                        <div class="urlap-csoport">
+                            <label for="alprojekt-hatarido">Határidő:</label>
+                            <input type="date" id="alprojekt-hatarido" required>
+                        </div>
+                        <button type="submit">Alprojekt Hozzáadása</button>
+                    </form>
+                </div>
+                <div class="alprojektek-lista">
+                    <h4>Alprojektek</h4>
+                    <div id="alprojektek-kontener">
+                        </div>
+                </div>
+                <!-- Kördiagram konténer a modálon belülre -->
+                <div id="pie-chart-container" style="width: 100%; height: 250px; display: flex; justify-content: center; align-items: center; margin-top: 20px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

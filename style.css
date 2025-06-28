@@ -1,0 +1,208 @@
+/* Az alap és egyéb stílusok (header, űrlap, lista, modal) változatlanok */
+:root {
+    --szin-hatter: #f4f7f6;
+    --szin-kontener: #ffffff;
+    --szin-elsodleges: #005f73;
+    --szin-szoveg: #333;
+    --szin-arnyek: #e0e0e0;
+    
+    /* MEGLÉVŐ STÁTUSZ SZÍNEK (nem a sávokhoz) */
+    --szin-tervezett: #2a9d8f;      /* Az űrlap elemekhez, listákhoz, stb. */
+    --szin-folyamatban: #e9c46a;
+    --szin-kesz: #264653;
+    --szin-torles: #e76f51;
+    --idovonal-nap-szelesseg: 45px;
+
+    /* ÚJ: Alprojekt színek a MODÁLBAN (opcionális, ha el akarod különíteni) */
+    --szin-alprojekt-hatter: #e6e6e6; /* Világosabb háttér az alprojektekhez */
+    --szin-alprojekt-szoveg: #555;
+    --szin-alprojekt-tervezett: #1d7b70; /* Kicsit sötétebb árnyalat */
+    --szin-alprojekt-folyamatban: #d1b459;
+    --szin-alprojekt-kesz: #1b3844;
+
+    /* ÚJ: PROJEKT SÁVOK SZÍNEI (ezekből lesz a nyíl színe is) */
+    --projekt-sav-tervezett-szin: #008CBA; /* Sötétebb ciánkék */
+    --projekt-sav-folyamatban-szin: #FFD700; /* Szép sárga (Arany) */
+    --projekt-sav-kesz-szin: #228B22;      /* Szép zöld (Erdő Zöldje) */
+
+    /* ÚJ: ALPROJEKT SÁVOK SZÍNEI (ezek is ebből kapják a nyíl színét) */
+    --alprojekt-sav-tervezett-szin: #006D8A; /* Sötétebb ciánkék árnyalat */
+    --alprojekt-sav-folyamatban-szin: #DAA520; /* Sötétebb sárga árnyalat */
+    --alprojekt-sav-kesz-szin: #1B781B;      /* Sötétebb zöld árnyalat */
+}
+body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background-color:var(--szin-hatter);color:var(--szin-szoveg);margin:0;padding:20px;line-height:1.6}.container{max-width:95%;margin:0 auto;background-color:var(--szin-kontener);padding:25px;border-radius:8px;box-shadow:0 4px 15px rgba(0,0,0,0.05)}header{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid var(--szin-arnyek);padding-bottom:15px;margin-bottom:25px}header h1{color:var(--szin-elsodleges);margin:0}.felhasznalo-szekcio{display:flex;align-items:center;gap:10px}.felhasznalo-szekcio label{font-weight:500}h2{color:var(--szin-elsodleges);margin-top:0}section{background-color:#fdfdfd;padding:20px;margin-bottom:20px;border:1px solid var(--szin-arnyek);border-radius:5px}#projekt-urlap{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;align-items:end}.urlap-csoport{display:flex;flex-direction:column}input[type=text],input[type=date],select{padding:10px;border:1px solid #ccc;border-radius:4px;font-size:1rem}button{padding:12px 20px;background-color:var(--szin-elsodleges);color:white;border:none;border-radius:4px;cursor:pointer;font-size:1rem;transition:background-color .3s ease}#mai-napra-ugras{background-color:#fca311}button:hover{filter:brightness(90%)}.lista-fejlec{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px;margin-bottom:15px}.szurok{display:flex;gap:10px;flex-wrap:wrap}#nev-szuro{width:200px}.projekt-elem{display:flex;justify-content:space-between;align-items:center;padding:15px;border:1px solid var(--szin-arnyek);border-left-width:5px;border-radius:4px;margin-bottom:10px;cursor:pointer;transition:box-shadow .2s ease-in-out}.projekt-elem:hover{box-shadow:0 2px 8px rgba(0,0,0,0.1)}.projekt-elem.statusz-tervezett{border-left-color:var(--szin-tervezett)}.projekt-elem.statusz-folyamatban{border-left-color:var(--szin-folyamatban)}.projekt-elem.statusz-kesz{border-left-color:var(--szin-kesz)}.projekt-info{flex-grow:1}.projekt-info strong{font-size:1.1rem}.projekt-controls{display:flex;align-items:center;gap:10px}.projekt-controls select,.projekt-controls button{cursor:initial}.torles-gomb{background-color:var(--szin-torles);padding:8px 12px}.modal{display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgba(0,0,0,0.5);justify-content:center;align-items:center}.modal-content{background-color:#fefefe;margin:auto;padding:30px;border:1px solid #888;width:80%;max-width:600px;border-radius:8px;position:relative;animation:fadeIn .3s}@keyframes fadeIn{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}.close-button{color:#aaa;position:absolute;top:10px;right:20px;font-size:28px;font-weight:700;cursor:pointer}.close-button:hover,.close-button:focus{color:black}#modal-body h3{color:var(--szin-elsodleges);margin-top:0}
+
+
+/* --- ÚJ IDŐVONAL STÍLUSOK --- */
+.idovonal-kontener {
+    overflow-x: auto;
+    padding: 10px 0;
+    border: 1px solid var(--szin-arnyek);
+    background-color: #fcfcfc;
+}
+
+.idovonal-grid {
+    display: grid;
+    grid-auto-rows: min-content;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.honap-fejlec, .nap-fejlec {
+    text-align: center;
+    border-right: 1px solid #e0e0e0;
+    box-sizing: border-box;
+}
+
+.honap-fejlec {
+    grid-row: 1;
+    padding: 5px 0;
+    font-weight: bold;
+    background-color: #f0f0f0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.nap-fejlec {
+    grid-row: 2;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 0.8rem;
+    color: #666;
+    border-top: 1px solid #eee;
+}
+
+.nap-fejlec.mai-nap {
+    background-color: #fef4dd !important;
+    font-weight: bold;
+    color: var(--szin-elsodleges);
+    border: 1px solid var(--szin-elsodleges);
+}
+
+/* --- PROJEKT SÁV (NYÍL) STÍLUS --- */
+.projekt-sav {
+    grid-row-start: 3;
+    display: flex;
+    align-items: center;
+    height: 30px;
+    margin-top: 5px;
+    padding: 0 10px 0 15px;
+    border-radius: 15px 0 0 15px;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 500;
+    position: relative;
+    box-shadow: 1px 2px 5px rgba(0,0,0,0.2);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    transition: filter 0.2s;
+}
+.projekt-sav:hover {
+    filter: brightness(110%);
+}
+
+/* Státusz szerinti háttérszínek a FŐPROJEKT sávoknak */
+.projekt-sav.statusz-tervezett { background-color: var(--projekt-sav-tervezett-szin); }
+.projekt-sav.statusz-folyamatban { background-color: var(--projekt-sav-folyamatban-szin); }
+.projekt-sav.statusz-kesz { background-color: var(--projekt-sav-kesz-szin); color: #e0e0e0; } /* Megtartottam a világos szöveget a kész státuszhoz */
+
+/* A nyílhegy létrehozása pseudo-elemmel */
+.projekt-sav::after {
+    content: '';
+    position: absolute;
+    right: -14px; /* A sávon kívülre toljuk */
+    top: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 0 15px 15px; /* Ezzel hozzuk létre a háromszöget */
+    /* A szín már a JS-ből érkezik a --background-color-placeholder változóval */
+    border-color: transparent transparent transparent var(--background-color-placeholder);
+}
+
+
+/* ÚJ STÍLUSOK ALPROJEKTEKHEZ A MODÁLBAN */
+.subprojekt-hozzaadas {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid var(--szin-arnyek);
+}
+
+#alprojekt-urlap {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+    align-items: end;
+    margin-bottom: 20px;
+}
+/* Új stílus a gomboknak az alprojekt űrlapban, hogy ne legyenek túl nagyok */
+#alprojekt-urlap button {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+}
+
+
+.alprojektek-lista h4 {
+    margin-bottom: 10px;
+    color: var(--szin-elsodleges);
+}
+
+.alprojekt-elem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid var(--szin-arnyek);
+    border-left-width: 4px; /* Vékonyabb határ */
+    border-radius: 4px;
+    margin-bottom: 8px;
+    background-color: var(--szin-alprojekt-hatter); /* Kicsit eltérő háttér */
+    font-size: 0.9rem;
+}
+.alprojekt-elem.statusz-tervezett { border-left-color: var(--szin-alprojekt-tervezett); }
+.alprojekt-elem.statusz-folyamatban { border-left-color: var(--szin-alprojekt-folyamatban); }
+.alprojekt-elem.statusz-kesz { border-left-color: var(--szin-alprojekt-kesz); }
+
+.alprojekt-info strong {
+    font-size: 1rem;
+    color: var(--szin-alprojekt-szoveg);
+}
+
+.alprojekt-controls {
+    display: flex;
+    gap: 5px;
+}
+.alprojekt-controls select {
+    font-size: 0.8rem;
+    padding: 5px;
+}
+.alprojekt-controls button {
+    padding: 5px 8px;
+    font-size: 0.8rem;
+}
+
+/* ÚJ STÍLUSOK ALPROJEKTEKHEZ AZ IDŐVONALON */
+.alprojekt-sav {
+    /* Az alprojektek eltérő megjelenése az idővonalon */
+    height: 20px; /* Kisebb magasság */
+    font-size: 0.8rem; /* Kisebb betűméret */
+    margin-left: 10px; /* Eltolás jobbra, hogy jelezze az alárendeltséget */
+    border-radius: 10px 0 0 10px; /* Kisebb lekerekítés */
+    opacity: 0.85; /* Kicsit áttetszőbb */
+    border: 1px solid rgba(0,0,0,0.1); /* Vékonyabb határ */
+}
+
+/* Státusz szerinti háttérszínek az ALPROJEKT sávoknak */
+.alprojekt-sav.statusz-tervezett { background-color: var(--alprojekt-sav-tervezett-szin); }
+.alprojekt-sav.statusz-folyamatban { background-color: var(--alprojekt-sav-folyamatban-szin); }
+.alprojekt-sav.statusz-kesz { background-color: var(--alprojekt-sav-kesz-szin); }
+
+
+/* A nyílhegy méretének/eltolásának igazítása az alprojektekhez */
+.alprojekt-sav::after {
+    border-width: 10px 0 10px 10px; /* Kisebb nyílhegy */
+    right: -9px; /* Eltolás igazítása */
+}
